@@ -606,7 +606,7 @@
         document.getElementById('kpi-progress').innerText = progress;
 
         const topSpec = Object.entries(specs)
-            .sort((a, b) => b[1] - a[1])[0];
+            .sort((a, b) => b[1].total - a[1].total)[0];
             console.log(topSpec)
         if (topSpec) {
 
