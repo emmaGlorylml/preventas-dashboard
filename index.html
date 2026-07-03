@@ -136,7 +136,7 @@
 <!-- FILTROS -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 bg-slate-900/50 p-4 rounded-xl border border-slate-800">
     <div>
-        <label class="text-[10px] uppercase font-bold text-slate-500 mb-1 block ml-1">Dealer</label>
+        <label class="text-[10px] uppercase font-bold text-slate-500 mb-1 block ml-1">Reportó</label>
         <select id="filter-dealer" onchange="applyFilters()">
             <option value="all">Todos</option>
         </select>
@@ -208,13 +208,13 @@
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
     <div class="card">
         <h3 class="font-bold text-slate-400 mb-4 uppercase text-[10px] tracking-widest flex items-center gap-2">
-            <span class="w-2 h-2 bg-slate-400 rounded-full"></span> 3. Participación por Dealer (Top 10)
+            <span class="w-2 h-2 bg-slate-400 rounded-full"></span> 3. Reportó
         </h3>
         <div style="height:280px"><canvas id="chartDealer"></canvas></div>
     </div>
     <div class="card">
         <h3 class="font-bold text-indigo-400 mb-4 uppercase text-[10px] tracking-widest flex items-center gap-2">
-            <span class="w-2 h-2 bg-indigo-400 rounded-full"></span> 4. Distribución de Next Actions
+            <span class="w-2 h-2 bg-indigo-400 rounded-full"></span> 4. Distribución de tickets por asset
         </h3>
         <div style="height:280px"><canvas id="chartNextActions"></canvas></div>
     </div>
@@ -246,10 +246,9 @@
                 <tr>
                     <th>Ticket</th>
                     <th>Especialista</th>
-                    <th>Dealer</th>
+                    <th>Reportó</th>
                     <th>Asset</th>
                     <th>Prioridad</th>
-                    <th>Siguiente Paso</th>
                 </tr>
             </thead>
 
@@ -572,7 +571,7 @@
             const prioFull = row.Prioridad || 'Media';
             const hw = row.Asset || 'Otro';
             const dlr = row.Dealer || 'Desconocido';
-            const action = row['Next Steps'] || 'Sin definir';
+            const action = row.Asset || 'Otro';
             
             const pKey = priosLabels.find(p => prioFull.includes(p)) || 'Media';
 
