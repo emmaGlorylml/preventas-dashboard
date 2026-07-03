@@ -134,7 +134,7 @@
 </header>
 
 <!-- FILTROS -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 bg-slate-900/50 p-4 rounded-xl border border-slate-800">
     <div>
         <label class="text-[10px] uppercase font-bold text-slate-500 mb-1 block ml-1">Reportó</label>
         <select id="filter-dealer" onchange="applyFilters()">
@@ -142,12 +142,12 @@
         </select>
     </div>
 
-    <div>
+    <!-- <div>
         <label class="text-[10px] uppercase font-bold text-slate-500 mb-1 block ml-1">País</label>
         <select id="filter-country" onchange="applyFilters()">
             <option value="all">Todos</option>
         </select>
-    </div>
+    </div> -->
 
     <div>
         <label class="text-[10px] uppercase font-bold text-slate-500 mb-1 block ml-1">Prioridad</label>
@@ -340,7 +340,7 @@
 
             "Customer": item.Customer || "", 
 
-            "Country": item.Country || ""
+            // "Country": item.Country || ""
         };
     }
 
@@ -445,7 +445,7 @@
     function populateFilterOptions() {
 
         const dealers = new Set();
-        const countries = new Set();
+        //const countries = new Set();
         const prios = new Set();
 
         rawData.forEach(row => {
@@ -453,11 +453,11 @@
             if (row.Dealer) dealers.add(row.Dealer);
             if (row.Prioridad) prios.add(row.Prioridad);
 
-            countries.add(extractCountry(row.Country));
+            // countries.add(extractCountry(row.Country));
         });
 
         fillSelect("filter-dealer", dealers);
-        fillSelect("filter-country", countries);
+        // fillSelect("filter-country", countries);
         fillSelect("filter-prio", prios);
     }
 
@@ -477,7 +477,7 @@
     function applyFilters() {
 
         const dF = document.getElementById('filter-dealer').value;
-        const cF = document.getElementById('filter-country').value;
+        // const cF = document.getElementById('filter-country').value;
         const pF = document.getElementById('filter-prio').value;
 
         const filtered = rawData.filter(row => {
@@ -485,14 +485,14 @@
             const matchesDealer =
                 dF === 'all' || row.Dealer === dF;
 
-            const matchesCountry =
-                cF === 'all' ||
-                extractCountry(row.Country) === cF;
+            // const matchesCountry =
+            //     cF === 'all' ||
+            //     extractCountry(row.Country) === cF;
 
             const matchesPrio =
                 pF === 'all' || row.Prioridad === pF;
 
-            return matchesDealer && matchesCountry && matchesPrio;
+            return matchesDealer && matchesPrio;
         });
 
         renderDashboard(filtered);
@@ -698,33 +698,6 @@
     // =========================
     // HELPERS
     // =========================
-
-    function extractCountry(str) {
-
-        if (!str) return "N/A";
-
-        const low = str.toLowerCase();
-
-        if (low.includes("mex")) return "México";
-        if (low.includes("col")) return "Colombia";
-        if (low.includes("per")) return "Perú";
-        if (low.includes("bra")) return "Brasil";
-        if (low.includes("rep")) return "República Dominicana";
-        if (low.includes("bol")) return "Bolivia";
-        if (low.includes("guat")) return "Guatemala";
-        if (low.includes("sal")) return "Salvador";
-        if (low.includes("ven")) return "Venezuela";
-        if (low.includes("pan")) return "Panamá";
-        if (low.includes("par")) return "Paraguay";
-        if (low.includes("ecu")) return "Ecuador";
-        if (low.includes("arg")) return "Argentina";
-        if (low.includes("chi")) return "Chile";
-        if (low.includes("cost")) return "Costa Rica";
-        if (low.includes("suri")) return "Suriname";
-        if (low.includes("guy")) return "Guyana";
-
-        return "Otro";
-    }
 
     function takeSnapshot() {
 
