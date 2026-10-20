@@ -1,1 +1,1 @@
-[{"TicketNumber":"Falta actualizar licencias","AssignedTo":null,"Dealer":null,"Asset":null,"Priority":null,"Status":{"@odata.type":"#Microsoft.Azure.Connectors.SharePoint.SPListExpandedReference","Id":0,"Value":"Abierto"},"OpenRequest":"2026-10-12","Customer":"Panamericano"}]
+[{"TicketNumber":"Falta actualizar licencias","AssignedTo":null,"Dealer":null,"Asset":null,"Priority":null,"Status":null,"OpenRequest":"2026-10-20","Customer":"Panamericano"}]
